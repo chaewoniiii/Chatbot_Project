@@ -1,0 +1,27 @@
+{%extends "base.html"%}
+
+<!-- 헤더 공간 -->
+{% block header%}
+    {% include 'header.html'%}
+    <hr>
+{% endblock %}
+
+{%block content%}
+<!-- Content -->
+<div class="row mt-5">
+    <div class="row mt-5">
+        <div class="col-5">
+            <h2>노래 순위 공간</h2>
+        </div>
+        <div class="col-5">
+            <h2>챗봇 공간</h2>
+        </div>
+    </div>
+</div>
+<hr>
+{%endblock%}
+
+<!-- 푸터공간 -->
+{% block footer %}
+    {%include 'footer.html' %}
+{% endblock %}
