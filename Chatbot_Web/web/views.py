@@ -25,6 +25,8 @@ def genine(page=1):
     art = []
     rank = []
     soundtrack = []
+    link = []
+    albumlink = []
     for i in e:
         title = i.select_one('.title.ellipsis').text.strip()
         if "19금" in title:
@@ -34,9 +36,10 @@ def genine(page=1):
         art.append(i.select_one('.artist.ellipsis').text.strip())
         rank.append(i.select_one('.number').text[:3].strip())
         soundtrack.append(i.select_one('.albumtitle.ellipsis').text.strip())
+        link.append(i.select_one('.link').a.attrs['onclick'].strip("fnViewSongInfo('").strip("');return false;"))
+        albumlink.append(i.select_one('.cover').attrs['onclick'].strip("fnViewAlbumLayer('").strip("');return false;"))
 
-
-    return {'곡': song, '아티스트': art, '순위':rank, '음원':soundtrack}
+    return {'곡': song, '아티스트': art, '순위':rank, '음원':soundtrack, '링크':link, '앨범링크':albumlink}
 
 def main(request):
     page1 = pd.DataFrame(genine(1))
