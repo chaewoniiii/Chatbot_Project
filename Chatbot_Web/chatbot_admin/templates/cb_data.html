@@ -9,6 +9,63 @@
 {%block content%}
 <!-- Content -->
 <div class="row mt-5">
-    <h1>Data</h1>
+        <div class="col-3">
+            <select name="admin_intent" id="admin_intent">
+                <option value="ad1">관리자의도전체</option>
+                <option value="ad2">의도분류1</option>
+                <option value="ad3">의도분류2</option>
+            </select>
+        
+            <select name="ai_intent" id="ai_intent">
+                <option value="ai1">ai 의도전체</option>
+                <option value="ai2">의도분류1</option>
+                <option value="ai3">의도분류2</option>
+            </select>
+        </div>
+        <div class="col-3">
+            <input type="checkbox" name="" id=""> 관리자 수정항목 표시 <br>
+            <input type="checkbox" name="" id=""> 관리자 미수정항목 표시 <br>
+            <input type="checkbox" name="" id=""> 테스트 결과 정답항목 표시 <br>
+            <input type="checkbox" name="" id=""> 테스트 결과 틀린항목 표시 <br>
+            <input type="checkbox" name="" id=""> 미테스트 결과 표시 <br>
+            <input type="checkbox" name="" id=""> 학습적용된 항목 표시 <br>
+        </div> 
+        <div class="col-3 position-relative">
+        학습횟수(이하) <input type="number" name="" id="" style="width:30%"> <br>
+        <button type="button" class="btn btn-primary position-absolute top-100 start-50 translate-middle" style="width: 100%;">적용</button>
+        </div>
 </div>
+    <div class="mt-5">
+        <table class="table">
+            <thead>
+                <th>no</th>
+                <th>텍스트</th>
+                <th>학습횟수</th>
+                <th>ai분류</th>
+                <th>관리자분류</th>
+                <th>테스트결과</th>
+                <th>학습적용</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td><button type="button" class="btn btn-primary">적용됨</button></td>
+                </tr>
+                <tr>
+                    <td>1-1</td>
+                    <td>2-1</td>
+                    <td>3-1</td>
+                    <td>4-1</td>
+                    <td>5-1</td>
+                    <td>6-1</td>
+                    <td><button type="button" class="btn btn-warning">제외됨</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 {%endblock%}
