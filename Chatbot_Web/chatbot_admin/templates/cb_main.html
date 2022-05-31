@@ -22,7 +22,7 @@
               </tr>         
               <tr>
                 <td>학습된 데이터 - 000개</td>
-                <td><a href="{% url 'cb_admin:req'%}" class="btn btn-primary">응답 상세보기</a></td>
+                <!-- <td><a href="{% url 'cb_admin:req'%}" class="btn btn-primary">응답 상세보기</a></td> -->
                 <td></td>
                 <td></td>
               </tr>
@@ -39,20 +39,19 @@
                 <td></td>
               </tr>
               <tr>
-                <td><input type="number" name="" id="" placeholder="횟수" style="width: 30%;">데이터 선택</td>
+                <td><input type="number" name="" id="sel_data" placeholder="횟수" style="width: 30%;">데이터 선택</td>
                 <td></td>
-                <td colspan="2" rowspan="2"> n 개의 데이터를 학습 하시겠습니까?</td>
+                <td colspan="2" rowspan="2"><p id="n_data" style="display: none;"></p></td>
               </tr>
               <tr>
-                <td><button type="button" class="btn btn-primary" style="width: 60%;">학습하기</button></td>
-                <td><img src="/static/img/Skype-balls-loader-unscreen.gif" alt=""></td>
+                <td><button type="button" class="btn btn-primary" style="width: 60%;" onclick="learning()">학습하기</button></td>
                 
               </tr>
               <tr>
-                <td><button type="button" class="btn btn-primary" style="width: 50%;">테스트</button></td>
+                <td><button type="button" class="btn btn-primary" style="width: 50%;" onclick="learn_test()">테스트</button></td>
                 <td></td>
-                <td><button type="button" class="btn btn-secondary" style="width: 100%;">Cancel</button></td>
-                <td><button type="button" class="btn btn-primary" style="width: 100%;">OK</button></td>
+                <td><button type="button" class="btn btn-secondary btn_res" style="width: 100%; display: none;" onclick="btn_cancel()">Cancel</button></td>
+                <td><button type="button" class="btn btn-primary btn_res" style="width: 100%; display: none;" onclick="btn_ok(1)">OK</button></td>
               </tr>
               <tr>
                 <td></td>
@@ -61,12 +60,10 @@
                 <td></td>
               </tr>
               <tr>
-                <td colspan="2">테스트 결과<br>정확도 - 00.0%</td>
-                <td colspan="2">학습이 완료되었습니다</td>
+                <td colspan="2"><p id="test_res" style="display: none;">테스트 결과<br>정확도 - 00.0%</p></td>
               </tr>
               <tr>
-                <td colspan="2"><button type="button" class="btn btn-primary" style="width: 100%;">OK</button></td>
-                <td colspan="2"><button type="button" class="btn btn-primary" style="width: 100%;">OK</button></td>
+                <td colspan="2"><button type="button" class="btn btn-primary" style="width: 50%; display: none;" id="test_btn" onclick="btn_ok(2)">OK</button></td>
               </tr>
             </table>
     </div>
