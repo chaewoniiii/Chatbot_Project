@@ -15,19 +15,19 @@
     <div class="col-7">
         <table class="table table-borderless">   
               <tr>
-                <td>사용자 데이터 - 000개</td>
+                <td>사용자 데이터 - 0개</td>
                 <td><a href="{%url 'cb_admin:data'%}" class="btn btn-primary">데이터 상세보기</a></td>
                 <td></td>
                 <td></td>
               </tr>         
               <tr>
-                <td>학습된 데이터 - 000개</td>
+                <td><p id="r_data">학습된 데이터 - {{learn_data}}개</p></td>
                 <!-- <td><a href="{% url 'cb_admin:req'%}" class="btn btn-primary">응답 상세보기</a></td> -->
                 <td></td>
                 <td></td>
               </tr>
               <tr>
-                <td>미학습 데이터 - 000개</td>
+                <td>미학습 데이터 - 0개</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -39,7 +39,9 @@
                 <td></td>
               </tr>
               <tr>
-                <td><input type="number" name="" id="sel_data" placeholder="횟수" style="width: 30%;">데이터 선택</td>
+                <!-- <form action="{% url 'cb_admin:main'%}" method="POST">
+                  {% csrf_token %} -->
+                <td><input type="number" name="sel_data" id="sel_data" placeholder="횟수" style="width: 30%;">데이터 선택</td>
                 <td></td>
                 <td colspan="2" rowspan="2"><p id="n_data" style="display: none;"></p></td>
               </tr>
@@ -48,23 +50,24 @@
                 
               </tr>
               <tr>
-                <td><button type="button" class="btn btn-primary" style="width: 50%;" onclick="learn_test()">테스트</button></td>
-                <td></td>
-                <td><button type="button" class="btn btn-secondary btn_res" style="width: 100%; display: none;" onclick="btn_cancel()">Cancel</button></td>
-                <td><button type="button" class="btn btn-primary btn_res" style="width: 100%; display: none;" onclick="btn_ok(1)">OK</button></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td colspan="2"><p id="test_res" style="display: none;">테스트 결과<br>정확도 - 00.0%</p></td>
-              </tr>
-              <tr>
-                <td colspan="2"><button type="button" class="btn btn-primary" style="width: 50%; display: none;" id="test_btn" onclick="btn_ok(2)">OK</button></td>
-              </tr>
+                  <td><button type="button" class="btn btn-primary" style="width: 50%;" onclick="learn_test()">테스트</button></td>
+                  <td></td>
+                  <td><button type="button" class="btn btn-secondary btn_res" style="width: 100%; display: none;" onclick="btn_cancel()">Cancel</button></td>
+                  <td><button type="submit" class="btn btn-primary btn_res" style="width: 100%; display: none;" onclick="btn_ok(1)">OK</button></td>
+                <!-- </form> -->
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td colspan="2"><p id="test_res" style="display: none;"></p></td>
+                </tr>
+                <tr>
+                  <td colspan="2"><button type="button" class="btn btn-primary" style="width: 50%; display: none;" id="test_btn" onclick="btn_ok(2)">OK</button></td>
+                </tr>
             </table>
     </div>
 </div>

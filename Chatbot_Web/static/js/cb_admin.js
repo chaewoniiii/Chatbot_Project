@@ -16,33 +16,49 @@ function btn_cancel(){
     $('.btn_res').css('display', 'none')
 }
 
+function loading_img(){
+    var maskHeight = $(document).height();
+    var maskWidth = window.document.body.clientWidth;
+
+    var mask = "<div id='mask' style='position:absolute; z-index:9000; background-color:#000000; display:none; left:0; top:0;'></div>";
+    var loadingImg = "";
+
+    loadingImg += "<div id='loadingImg' class='position-relative'>";
+    loadingImg += "<img src='/static/img/Skype-balls-loader-unscreen.gif' class='position-absolute top-0 start-50 translate-middle'/>";
+    loadingImg += "</div>";
+
+    $('body')
+        .append(mask)
+        .append(loadingImg)
+    
+    $('#mask').css({
+        'width' : maskWidth,
+        'height' : maskHeight,
+        'opacity' : '0.1'
+    });
+
+    $('#mask').show();
+    $('#loadingImg').show();
+}
+
 function btn_ok(flag){
     if(flag == 1){
-        var maskHeight = $(document).height();
-        var maskWidth = window.document.body.clientWidth;
-    
-        var mask = "<div id='mask' style='position:absolute; z-index:9000; background-color:#000000; display:none; left:0; top:0;'></div>";
-        var loadingImg = "";
-    
-        loadingImg += "<div id='loadingImg' class='position-relative'>";
-        loadingImg += "<img src='/static/img/Skype-balls-loader-unscreen.gif' class='position-absolute top-0 start-50 translate-middle'/>";
-        loadingImg += "</div>";
-    
-        $('body')
-            .append(mask)
-            .append(loadingImg)
+        loading_img()
+        var epoch = $('#sel_data').val()
+        $.ajax({
+            url : '/cb_admin/cb_learn/',
+            type : 'POST',
+            data :{
+                'ep' : epoch
+            },
+            success : function(response){
+                if(response['loading'] == 'fin'){
+                    closeLoadingWithMask()
+                }
+                $("#r_data").text('학습된 데이터 -' + response['learn_data'] + '개')
+            }
+        })
         
-        $('#mask').css({
-            'width' : maskWidth,
-            'height' : maskHeight,
-            'opacity' : '0.1'
-        });
-    
-        $('#mask').show();
-    
-        $('#loadingImg').show();
-    
-        setTimeout('closeLoadingWithMask()', 3000)
     }
     else if(flag == 2){
         $('#test_res').css('display', 'none')
@@ -53,8 +69,19 @@ function btn_ok(flag){
 }
 
 function learn_test(){
+    loading_img()
     $('#test_res').css('display', 'block')
     $('#test_btn').css('display', 'block')
+    $.ajax({
+        url : '/cb_admin/cb_test',
+        success : function(response){
+            if(response['loading'] == 'fin'){
+                closeLoadingWithMask()
+            }
+            $("#test_res").text('테스트결과 정확도' + ' '+response['accu'] + "%")
+        }
+    })
+    
 }
 
 function closeLoadingWithMask(){

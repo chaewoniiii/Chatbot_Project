@@ -1,7 +1,8 @@
 {% block header %}
+{% load static %}
 <div class="row">
     <div class="col-xl-8 ">
-        <h2><a href="{%url 'cb_admin:main'%}"><img src="static/img/musicicon.png"></a>Recommendation Music Chat Bot Admin</h2>
+        <h2><a href="{%url 'cb_admin:main'%}"><img src="{% static 'img/musicicon.png'%}"></a>Recommendation Music Chat Bot Admin</h2>
     </div>
 </div>
 {% endblock %}
