@@ -1,7 +1,3 @@
-$(function(){
-    
-})
-
 function learning(){
     var data_num = $('#sel_data').val()
     if($('#n_data').css('display', 'none')){
@@ -53,7 +49,7 @@ function btn_ok(flag){
             },
             success : function(response){
                 if(response['loading'] == 'fin'){
-                    closeLoadingWithMask()
+                    closeLoadingWithMask(1)
                 }
                 $("#r_data").text('학습된 데이터 -' + response['learn_data'] + '개')
             }
@@ -64,35 +60,35 @@ function btn_ok(flag){
         $('#test_res').css('display', 'none')
         $('#test_btn').css('display', 'none')
     }
-    
-    
 }
 
 function learn_test(){
     loading_img()
-    $('#test_res').css('display', 'block')
-    $('#test_btn').css('display', 'block')
-    $.ajax({
+        $.ajax({
         url : '/cb_admin/cb_test',
         success : function(response){
             if(response['loading'] == 'fin'){
-                closeLoadingWithMask()
+                closeLoadingWithMask(2)
             }
             $("#test_res").text('테스트결과 정확도' + ' '+response['accu'] + "%")
         }
     })
-    
+    $('#test_res').css('display', 'block')
+    $('#test_btn').css('display', 'block')
 }
 
-function closeLoadingWithMask(){
+function closeLoadingWithMask(flag){
     $('#mask, #loadingImg').hide();
     $('#mask, #loadingImg').empty();
-
-    alert('학습이 완료되었습니다')
+    if(flag == 1){
+        alert('학습이 완료되었습니다')
+    }
+    else if(flag == 2){
+        alert('테스트 완료')
+    }
 
     if($('#n_data').css('display', 'block')){
         $('#n_data').css('display', 'none')
         $('.btn_res').css('display', 'none')
     }
 }
-

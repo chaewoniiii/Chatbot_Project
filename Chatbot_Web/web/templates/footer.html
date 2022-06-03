@@ -1,7 +1,7 @@
 {% block header %}
     <div class="container px-lg-5">
         <nav>
-            <div style="float: right;"><a href="{% url 'cb_admin:main'%}" onclick="adminchk()">관리자</a></div>
+            <div style="float: right;"><button type="button" class="btn" onclick="adminchk()">관리자</button></div>
         </nav>
         <p>
             <span>협찬 : 협찬</span><br>
@@ -15,6 +15,9 @@
     if(r == '1234'){
         alert('확인되었습니다')
         location.href = "{%url 'cb_admin:main'%}"
+    }
+    else{
+        return false
     }
 }
 </script>
