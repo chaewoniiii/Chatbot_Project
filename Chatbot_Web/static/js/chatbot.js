@@ -1,4 +1,7 @@
 $(function(){
+    testchat = '안녕하세요 챗봇입니다 <br>사용법:ex)싸이 노래 추천, 퇴근길 노래 추천...'
+    var bottext = "<div style='margin:15px 0;text-align:left;'><span style='padding:3px 10px;background-color:#CEFBC9;border-radius:3px;'>" + testchat + "</span></div>";
+    $('#chatbox').append(bottext);
     // SEND 버튼을 누르거나 
     $("#sendbtn").click(function(){
         send_message();
