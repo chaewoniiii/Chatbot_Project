@@ -9,5 +9,8 @@ urlpatterns = [
     path('data/db/', views.db_data),
     path('data/mod/', views.db_mod_data),
     path('chat/db/', views.db_chat),
-    path('chat/mod/', views.db_mod_chat)
+    path('chat/mod/', views.db_mod_chat),
+
+    # db초기화
+    path('init/db/', views.train_db_init),
 ]

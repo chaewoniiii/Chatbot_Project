@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .web_func import *
+from .db_func import *
+from .insert_data import *
 from django.core import serializers
 from django.http import HttpResponse
 import json
@@ -68,6 +69,10 @@ def db_mod_chat(request):
         return HttpResponse(context, content_type="text/json-comment-filtered")
     return render(request, 'temp_page.html')
 
+# train_db초기화
+def train_db_init(request):
+    insert_basic_db()
+    return render(request, 'temp_page.html')
 
 # 챗봇엔진서버 요청
 # TODO

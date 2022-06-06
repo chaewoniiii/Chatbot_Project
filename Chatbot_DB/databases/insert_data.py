@@ -1,8 +1,8 @@
 from .models import TrainData, UserChatData
 import pandas as pd
+import os
 
 # 기본 데이터 db등록
-# 1회만 실행
 
 # db등록함수
 def insert_train_db(data):
@@ -31,7 +31,18 @@ basic_data = []
 
 # 기본정보 입력
 def insert_basic_db():
-    basic_data = pd.read_excel('basic_datas.xlsx', header=0)
+    # db 초기화
+    TrainData.objects.all().delete()
+    
+    # # xlsx파일 불러오기
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    XLSX_DIR = os.path.join(BASE_DIR, 'basic_datas.xlsx')
+    basic_data = pd.read_excel(XLSX_DIR, header=0)
 
+    # 저장
     for num, data in basic_data.iterrows():
         insert_train_db(data)
+
+    # 확인
+    temp = TrainData.objects.all()
+    print(temp)
