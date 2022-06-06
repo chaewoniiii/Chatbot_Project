@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from .db_func import *
 from .insert_data import *
-from django.core import serializers
+# from django.http import JsonResponse
 from django.http import HttpResponse
 import json
+
+from django.views.decorators.csrf import csrf_exempt
 
 web_url = ''
 
@@ -25,10 +27,12 @@ def test(request):
 
 # 웹페이지
 # 관리자페이지-메인 db요청
+@csrf_exempt
 def db_main(request):
     if request.method == 'POST':
-        data = json.dumps(db_search(request))
+        data = db_search(request)
         return HttpResponse(data, content_type="text/json-comment-filtered")
+        # return JsonResponse({'reload_all': False, 'queryset_json': data})
     return render(request, 'temp_page.html')
 
 # 관리자페이지-메인 학습요청
@@ -40,6 +44,7 @@ def db_test(request):
     return render(request, 'temp_page.html')
 
 # 관리자페이지-데이터 db요청
+@csrf_exempt
 def db_data(request):
     if request.method == 'POST':
         data = json.dumps(db_search(request))

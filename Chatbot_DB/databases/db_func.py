@@ -1,5 +1,7 @@
 import json
 
+from django.core import serializers
+from .models import TrainData, UserChatData
 
 # 웹페이지
 # 관리자페이지-메인 db요청
@@ -9,16 +11,11 @@ def db_search(cond):
     # TODO
 
     # 검색조건에 맞는 데이터검색
-    # TODO
-
-    data = [
-        {
-            'test': 'check',
-        }
-    ]
+    temp = TrainData.objects.all()
 
     # json 변환
-    json_data = json.dumps(data)
+    # json_data = json.dumps(temp)
+    json_data = json.loads(serializers.serialize('json', temp, ensure_ascii=False))
 
     return json_data
 
