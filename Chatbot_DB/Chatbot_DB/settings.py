@@ -125,9 +125,6 @@ STATICFILES_DIRS = [
     BASE_DIR / "static", 
 ]
 
-FILE_UPLOAD_HANDLERS = ("django_excel.ExcelMemoryFileUploadHandler",
-                    "django_excel.TemporaryExcelFileUploadHandler")
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
