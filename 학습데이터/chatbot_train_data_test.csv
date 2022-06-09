@@ -1,0 +1,8 @@
+"id","intent","ner","query","answer","answer_image"
+1,인사,,안녕하세요,안녕하세요 챗봇입니다,
+2,인사,,반가워요,반가워요 챗봇입니다,
+3,기타,,,잘 모릅니다,
+4,노래,{B_ARTIST},{B_ARTIST} 노래 추천 ,{B_ARTIST}의 추천 하는 곡 입니다,{B_ARTIST}
+5,날씨,{B_WEA},{B_WEA}때 추천 해줘,{B_WEA} 의 추천 곡 입니다,{B_WEA}
+6,계절,{B_SEA},{B_SEA}곡 추천,{B_SEA} 의 추천 곡 입니다,{B_SEA}
+7,행동,{B_ACT},{B_ACT}할때 추천 해줘,{B_ACT} 할떄의 추천 곡 입니다,{B_ACT}
