@@ -20017,81 +20017,446 @@ $<휘성:ARTIST> 노래 추천 해주세요
 7 	 시	 EP	O
 8 	 어요	 EC	O
 
-; 출근 할때 듣는 노래
-$<출근 할때 듣는 노래:ACT>
-1 	 출근	 NNG 	 B_ACT
-2 	 하	 VV 	  O
+; 일할때 듣는 노래
+$<일할때 듣는 노래:ACT>
+1 	 일	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
 3 	 ㄹ	 ETM 	  O
 4 	 때	 NNG 	  O
 5 	 듣	 VV 	  O
 6 	 는	 ETM 	  O
 7 	 노래	 NNG 	  O
 
-; 출근길 노래
-$<출근길 노래:ACT>
-1 	 출근길	 NNG 	 B_ACT
-2 	 노래	 NNG 	  O
+; 일할때 듣는 노래 추천
+$<일할때 듣는 노래 추천:ACT>
+1 	 일	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
+3 	 ㄹ	 ETM 	  O
+4 	 때	 NNG 	  O
+5 	 듣	 VV 	  O
+6 	 는	 ETM 	  O
+7 	 노래	 NNG 	  O
+8 	 추천	 NNG 	  O
 
-; 출근
-$<출근:ACT>
-1 	 출근	 NNG 	 B_ACT
+; 일할때 듣는 노래 추천 해줘
+$<일할때 듣는 노래 추천 해줘:ACT>
+1 	 일	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
+3 	 ㄹ	 ETM 	  O
+4 	 때	 NNG 	  O
+5 	 듣	 VV 	  O
+6 	 는	 ETM 	  O
+7 	 노래	 NNG 	  O
+8 	 추천	 NNG 	  O
+9 	 하	 VV 	  O
+10 	 아	 EC 	  O
+11 	 주	 VX 	  O
+12 	 어	 EC 	  O
 
-; 일 하러 갈때 듣는 노래
-$<일 하러 갈때 듣는 노래:ACT>
-1 	 일	 NNB 	 B_ACT
-2 	 하	 VV 	  O
-3 	 러	 EC 	  O
-4 	 가	 VV 	  O
-5 	 ㄹ	 ETM 	  O
-6 	 때	 NNG 	  O
-7 	 듣	 VV 	  O
-8 	 는	 ETM 	  O
+; 일할때 듣기 좋은 노래
+$<일할때 듣기 좋은 노래:ACT>
+1 	 일	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
+3 	 ㄹ	 ETM 	  O
+4 	 때	 NNG 	  O
+5 	 듣	 VV 	  O
+6 	 기	 ETN 	  O
+7 	 좋	 VA 	  O
+8 	 은	 ETM 	  O
 9 	 노래	 NNG 	  O
 
-; 일 할때 맞는 노래
-$<일 할때 맞는 노래:ACT>
-1 	 일	 NNB 	 B_ACT
-2 	 하	 VV 	  O
+; 일할때 듣기 좋은 노래 추천
+$<일할때 듣기 좋은 노래 추천:ACT>
+1 	 일	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
 3 	 ㄹ	 ETM 	  O
 4 	 때	 NNG 	  O
-5 	 맞	 VV 	  O
-6 	 는	 ETM 	  O
-7 	 노래	 NNG 	  O
+5 	 듣	 VV 	  O
+6 	 기	 ETN 	  O
+7 	 좋	 VA 	  O
+8 	 은	 ETM 	  O
+9 	 노래	 NNG 	  O
+10 	 추천	 NNG 	  O
 
-; 퇴근 할때 듣는 노래
-$<퇴근 할때 듣는 노래:ACT>
-1 	 퇴근	 NNG 	 B_ACT
-2 	 하	 VV 	  O
+; 일할때 듣기 좋은 노래 추천 해줘
+$<일할때 듣기 좋은 노래 추천 해줘:ACT>
+1 	 일	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
+3 	 ㄹ	 ETM 	  O
+4 	 때	 NNG 	  O
+5 	 듣	 VV 	  O
+6 	 기	 ETN 	  O
+7 	 좋	 VA 	  O
+8 	 은	 ETM 	  O
+9 	 노래	 NNG 	  O
+10 	 추천	 NNG 	  O
+11 	 하	 VV 	  O
+12 	 아	 EC 	  O
+13 	 주	 VX 	  O
+14 	 어	 EC 	  O
+
+; 일중에 듣는 노래
+$<일중에 듣는 노래:ACT>
+1 	 일	 NNG 	 B_ACT
+2 	 중	 NNB 	  O
+3 	 에	 JKB 	  O
+4 	 듣	 VV 	  O
+5 	 는	 ETM 	  O
+6 	 노래	 NNG 	  O
+
+; 일중에 듣는 노래 추천
+$<일중에 듣는 노래 추천:ACT>
+1 	 일	 NNG 	 B_ACT
+2 	 중	 NNB 	  O
+3 	 에	 JKB 	  O
+4 	 듣	 VV 	  O
+5 	 는	 ETM 	  O
+6 	 노래	 NNG 	  O
+7 	 추천	 NNG 	  O
+
+; 일중에 듣는 노래 추천 해줘
+$<일중에 듣는 노래 추천 해줘:ACT>
+1 	 일	 NNG 	 B_ACT
+2 	 중	 NNB 	  O
+3 	 에	 JKB 	  O
+4 	 듣	 VV 	  O
+5 	 는	 ETM 	  O
+6 	 노래	 NNG 	  O
+7 	 추천	 NNG 	  O
+8 	 하	 VV 	  O
+9 	 아	 EC 	  O
+10 	 주	 VX 	  O
+11 	 어	 EC 	  O
+
+; 작업할때 듣는 노래
+$<작업할때 듣는 노래:ACT>
+1 	 작업	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
 3 	 ㄹ	 ETM 	  O
 4 	 때	 NNG 	  O
 5 	 듣	 VV 	  O
 6 	 는	 ETM 	  O
 7 	 노래	 NNG 	  O
 
-; 퇴근길 노래
-$<퇴근길 노래:ACT>
-1 	 퇴근길	 NNG 	 B_ACT
-2 	 노래	 NNG 	  O
-
-; 퇴근
-$<퇴근:ACT>
-1 	 퇴근	 NNG 	 B_ACT
-
-; 작업 할때 맞는 노래
-$<작업 할때 맞는 노래:ACT>
+; 작업할때 듣는 노래 추천
+$<작업할때 듣는 노래 추천:ACT>
 1 	 작업	 NNG 	 B_ACT
-2 	 하	 VV 	  O
+2 	 하	 XSV 	  O
 3 	 ㄹ	 ETM 	  O
 4 	 때	 NNG 	  O
-5 	 맞	 VV 	  O
+5 	 듣	 VV 	  O
+6 	 는	 ETM 	  O
+7 	 노래	 NNG 	  O
+8 	 추천	 NNG 	  O
+
+; 작업할때 듣는 노래 추천 해줘
+$<작업할때 듣는 노래 추천 해줘:ACT>
+1 	 작업	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
+3 	 ㄹ	 ETM 	  O
+4 	 때	 NNG 	  O
+5 	 듣	 VV 	  O
+6 	 는	 ETM 	  O
+7 	 노래	 NNG 	  O
+8 	 추천	 NNG 	  O
+9 	 하	 VV 	  O
+10 	 아	 EC 	  O
+11 	 주	 VX 	  O
+12 	 어	 EC 	  O
+
+; 작업할때 듣기 좋은 노래
+$<작업할때 듣기 좋은 노래:ACT>
+1 	 작업	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
+3 	 ㄹ	 ETM 	  O
+4 	 때	 NNG 	  O
+5 	 듣	 VV 	  O
+6 	 기	 ETN 	  O
+7 	 좋	 VA 	  O
+8 	 은	 ETM 	  O
+9 	 노래	 NNG 	  O
+
+; 작업할때 듣기 좋은 노래 추천
+$<작업할때 듣기 좋은 노래 추천:ACT>
+1 	 작업	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
+3 	 ㄹ	 ETM 	  O
+4 	 때	 NNG 	  O
+5 	 듣	 VV 	  O
+6 	 기	 ETN 	  O
+7 	 좋	 VA 	  O
+8 	 은	 ETM 	  O
+9 	 노래	 NNG 	  O
+10 	 추천	 NNG 	  O
+
+; 작업할때 듣기 좋은 노래 추천 해줘
+$<작업할때 듣기 좋은 노래 추천 해줘:ACT>
+1 	 작업	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
+3 	 ㄹ	 ETM 	  O
+4 	 때	 NNG 	  O
+5 	 듣	 VV 	  O
+6 	 기	 ETN 	  O
+7 	 좋	 VA 	  O
+8 	 은	 ETM 	  O
+9 	 노래	 NNG 	  O
+10 	 추천	 NNG 	  O
+11 	 하	 VV 	  O
+12 	 아	 EC 	  O
+13 	 주	 VX 	  O
+14 	 어	 EC 	  O
+
+; 작업중에 듣는 노래
+$<작업중에 듣는 노래:ACT>
+1 	 작업	 NNG 	 B_ACT
+2 	 중	 NNB 	  O
+3 	 에	 JKB 	  O
+4 	 듣	 VV 	  O
+5 	 는	 ETM 	  O
+6 	 노래	 NNG 	  O
+
+; 작업중에 듣는 노래 추천
+$<작업중에 듣는 노래 추천:ACT>
+1 	 작업	 NNG 	 B_ACT
+2 	 중	 NNB 	  O
+3 	 에	 JKB 	  O
+4 	 듣	 VV 	  O
+5 	 는	 ETM 	  O
+6 	 노래	 NNG 	  O
+7 	 추천	 NNG 	  O
+
+; 작업중에 듣는 노래 추천 해줘
+$<작업중에 듣는 노래 추천 해줘:ACT>
+1 	 작업	 NNG 	 B_ACT
+2 	 중	 NNB 	  O
+3 	 에	 JKB 	  O
+4 	 듣	 VV 	  O
+5 	 는	 ETM 	  O
+6 	 노래	 NNG 	  O
+7 	 추천	 NNG 	  O
+8 	 하	 VV 	  O
+9 	 아	 EC 	  O
+10 	 주	 VX 	  O
+11 	 어	 EC 	  O
+
+; 출근할때 듣는 노래
+$<출근할때 듣는 노래:ACT>
+1 	 출근	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
+3 	 ㄹ	 ETM 	  O
+4 	 때	 NNG 	  O
+5 	 듣	 VV 	  O
 6 	 는	 ETM 	  O
 7 	 노래	 NNG 	  O
 
-; 작업 할때 노래
-$<작업 할때 노래:ACT>
-1 	 작업	 NNG 	 B_ACT
-2 	 하	 VV 	  O
+; 출근할때 듣는 노래 추천
+$<출근할때 듣는 노래 추천:ACT>
+1 	 출근	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
 3 	 ㄹ	 ETM 	  O
 4 	 때	 NNG 	  O
-5 	 노래	 NNG 	  O
+5 	 듣	 VV 	  O
+6 	 는	 ETM 	  O
+7 	 노래	 NNG 	  O
+8 	 추천	 NNG 	  O
 
+; 출근할때 듣는 노래 추천 해줘
+$<출근할때 듣는 노래 추천 해줘:ACT>
+1 	 출근	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
+3 	 ㄹ	 ETM 	  O
+4 	 때	 NNG 	  O
+5 	 듣	 VV 	  O
+6 	 는	 ETM 	  O
+7 	 노래	 NNG 	  O
+8 	 추천	 NNG 	  O
+9 	 하	 VV 	  O
+10 	 아	 EC 	  O
+11 	 주	 VX 	  O
+12 	 어	 EC 	  O
+
+; 출근할때 듣기 좋은 노래
+$<출근할때 듣기 좋은 노래:ACT>
+1 	 출근	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
+3 	 ㄹ	 ETM 	  O
+4 	 때	 NNG 	  O
+5 	 듣	 VV 	  O
+6 	 기	 ETN 	  O
+7 	 좋	 VA 	  O
+8 	 은	 ETM 	  O
+9 	 노래	 NNG 	  O
+
+; 출근할때 듣기 좋은 노래 추천
+$<출근할때 듣기 좋은 노래 추천:ACT>
+1 	 출근	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
+3 	 ㄹ	 ETM 	  O
+4 	 때	 NNG 	  O
+5 	 듣	 VV 	  O
+6 	 기	 ETN 	  O
+7 	 좋	 VA 	  O
+8 	 은	 ETM 	  O
+9 	 노래	 NNG 	  O
+10 	 추천	 NNG 	  O
+
+; 출근할때 듣기 좋은 노래 추천 해줘
+$<출근할때 듣기 좋은 노래 추천 해줘:ACT>
+1 	 출근	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
+3 	 ㄹ	 ETM 	  O
+4 	 때	 NNG 	  O
+5 	 듣	 VV 	  O
+6 	 기	 ETN 	  O
+7 	 좋	 VA 	  O
+8 	 은	 ETM 	  O
+9 	 노래	 NNG 	  O
+10 	 추천	 NNG 	  O
+11 	 하	 VV 	  O
+12 	 아	 EC 	  O
+13 	 주	 VX 	  O
+14 	 어	 EC 	  O
+
+; 출근중에 듣는 노래
+$<출근중에 듣는 노래:ACT>
+1 	 출근	 NNG 	 B_ACT
+2 	 중	 NNB 	  O
+3 	 에	 JKB 	  O
+4 	 듣	 VV 	  O
+5 	 는	 ETM 	  O
+6 	 노래	 NNG 	  O
+
+; 출근중에 듣는 노래 추천
+$<출근중에 듣는 노래 추천:ACT>
+1 	 출근	 NNG 	 B_ACT
+2 	 중	 NNB 	  O
+3 	 에	 JKB 	  O
+4 	 듣	 VV 	  O
+5 	 는	 ETM 	  O
+6 	 노래	 NNG 	  O
+7 	 추천	 NNG 	  O
+
+; 출근중에 듣는 노래 추천 해줘
+$<출근중에 듣는 노래 추천 해줘:ACT>
+1 	 출근	 NNG 	 B_ACT
+2 	 중	 NNB 	  O
+3 	 에	 JKB 	  O
+4 	 듣	 VV 	  O
+5 	 는	 ETM 	  O
+6 	 노래	 NNG 	  O
+7 	 추천	 NNG 	  O
+8 	 하	 VV 	  O
+9 	 아	 EC 	  O
+10 	 주	 VX 	  O
+11 	 어	 EC 	  O
+
+; 퇴근할때 듣는 노래
+$<퇴근할때 듣는 노래:ACT>
+1 	 퇴근	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
+3 	 ㄹ	 ETM 	  O
+4 	 때	 NNG 	  O
+5 	 듣	 VV 	  O
+6 	 는	 ETM 	  O
+7 	 노래	 NNG 	  O
+
+; 퇴근할때 듣는 노래 추천
+$<퇴근할때 듣는 노래 추천:ACT>
+1 	 퇴근	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
+3 	 ㄹ	 ETM 	  O
+4 	 때	 NNG 	  O
+5 	 듣	 VV 	  O
+6 	 는	 ETM 	  O
+7 	 노래	 NNG 	  O
+8 	 추천	 NNG 	  O
+
+; 퇴근할때 듣는 노래 추천 해줘
+$<퇴근할때 듣는 노래 추천 해줘:ACT>
+1 	 퇴근	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
+3 	 ㄹ	 ETM 	  O
+4 	 때	 NNG 	  O
+5 	 듣	 VV 	  O
+6 	 는	 ETM 	  O
+7 	 노래	 NNG 	  O
+8 	 추천	 NNG 	  O
+9 	 하	 VV 	  O
+10 	 아	 EC 	  O
+11 	 주	 VX 	  O
+12 	 어	 EC 	  O
+
+; 퇴근할때 듣기 좋은 노래
+$<퇴근할때 듣기 좋은 노래:ACT>
+1 	 퇴근	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
+3 	 ㄹ	 ETM 	  O
+4 	 때	 NNG 	  O
+5 	 듣	 VV 	  O
+6 	 기	 ETN 	  O
+7 	 좋	 VA 	  O
+8 	 은	 ETM 	  O
+9 	 노래	 NNG 	  O
+
+; 퇴근할때 듣기 좋은 노래 추천
+$<퇴근할때 듣기 좋은 노래 추천:ACT>
+1 	 퇴근	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
+3 	 ㄹ	 ETM 	  O
+4 	 때	 NNG 	  O
+5 	 듣	 VV 	  O
+6 	 기	 ETN 	  O
+7 	 좋	 VA 	  O
+8 	 은	 ETM 	  O
+9 	 노래	 NNG 	  O
+10 	 추천	 NNG 	  O
+
+; 퇴근할때 듣기 좋은 노래 추천 해줘
+$<퇴근할때 듣기 좋은 노래 추천 해줘:ACT>
+1 	 퇴근	 NNG 	 B_ACT
+2 	 하	 XSV 	  O
+3 	 ㄹ	 ETM 	  O
+4 	 때	 NNG 	  O
+5 	 듣	 VV 	  O
+6 	 기	 ETN 	  O
+7 	 좋	 VA 	  O
+8 	 은	 ETM 	  O
+9 	 노래	 NNG 	  O
+10 	 추천	 NNG 	  O
+11 	 하	 VV 	  O
+12 	 아	 EC 	  O
+13 	 주	 VX 	  O
+14 	 어	 EC 	  O
+
+; 퇴근중에 듣는 노래
+$<퇴근중에 듣는 노래:ACT>
+1 	 퇴근	 NNG 	 B_ACT
+2 	 중	 NNB 	  O
+3 	 에	 JKB 	  O
+4 	 듣	 VV 	  O
+5 	 는	 ETM 	  O
+6 	 노래	 NNG 	  O
+
+; 퇴근중에 듣는 노래 추천
+$<퇴근중에 듣는 노래 추천:ACT>
+1 	 퇴근	 NNG 	 B_ACT
+2 	 중	 NNB 	  O
+3 	 에	 JKB 	  O
+4 	 듣	 VV 	  O
+5 	 는	 ETM 	  O
+6 	 노래	 NNG 	  O
+7 	 추천	 NNG 	  O
+
+; 퇴근중에 듣는 노래 추천 해줘
+$<퇴근중에 듣는 노래 추천 해줘:ACT>
+1 	 퇴근	 NNG 	 B_ACT
+2 	 중	 NNB 	  O
+3 	 에	 JKB 	  O
+4 	 듣	 VV 	  O
+5 	 는	 ETM 	  O
+6 	 노래	 NNG 	  O
+7 	 추천	 NNG 	  O
+8 	 하	 VV 	  O
+9 	 아	 EC 	  O
+10 	 주	 VX 	  O
+11 	 어	 EC 	  O

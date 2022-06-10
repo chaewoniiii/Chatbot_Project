@@ -51,8 +51,10 @@ class FindAnswer:
             print('단어는 뭘까?', word, '태그는 뭘까?', tag)
             
             # 변환해야하는 태그가 있는 경우 추가
-            if tag == 'B_ARTIST':
+            if tag == 'B_ARTIST' or tag == 'B_ACT':
+               
                 answer = answer.replace(tag, word)
+                print('결과:', answer)
                 
         answer = answer.replace('{', '')
         answer = answer.replace('}', '')
@@ -62,5 +64,6 @@ class FindAnswer:
         for word, tag in ner_predicts:
             if tag == 'B_ARTIST':
                 m_search = music_search(word)
-
+            elif tag == 'B_ACT':
+                m_search = '이제 태그 작업 해야하는데 지니에서 검색 쿼리가 다 다르네?'
             return m_search

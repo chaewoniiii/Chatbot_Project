@@ -2348,3 +2348,7 @@ ZE:A	NNG
 히토미	NNG
 힌트	NNG
 힘찬	NNG
+일	NNG
+퇴근	NNG
+작업	NNG
+출근	NNG
