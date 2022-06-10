@@ -26,10 +26,10 @@ ner = NerModel(model_name='models/ner/ner_model_test.h5', preprocess=p)
 # 클라이언트 요청을 수행하는 함수 (쓰레드에 담겨 실행될거임)
 def to_client(conn, addr, params):
     db = params['db']
-    
     try:
         db.connect()  # DB 연결
-        
+        m_search = '' 
+
         
         # 데이터 수신 (클라이언트로부터 데이터를 받기 위함)
         # conn 은 챗봇 클라이언트 소켓 객체 ( 이 객체를 통해 클라이언트 데이터 주고 받는다 )
@@ -56,20 +56,21 @@ def to_client(conn, addr, params):
         # 개체명 파악
         ner_predicts = ner.predict(query)
         ner_tags = ner.predict_tags(query)
-        
+       
         # 답변 검색, 분석된 의도와 개체명을 이용해 학습 DB 에서 답변을 검색
-        print('답변검색에 들어갈 단어 intet:', intent_name, "태그:", ner_tags)
         try:
             f = FindAnswer(db)
             answer_text, answer_image = f.search(intent_name, ner_tags)
             answer = f.tag_to_word(ner_predicts, answer_text)
-           
+            if not intent_name == '인사':
+                m_search = f.music_to_search(ner_predicts)
         except:
             answer = "죄송해요 무슨 말인지 모르겠어요. 조금 더 공부 할게요."
             answer_image = None
 
         # 검색된 답변데이터와 함께 앞서 정의한 응답하는 JSON 으로 생성
         send_json_data_str = {
+            "m_search" : m_search,
             "Query": query,
             "Answer": answer,
             "AnswerImageUrl": answer_image,

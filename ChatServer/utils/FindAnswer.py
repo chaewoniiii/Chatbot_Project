@@ -45,20 +45,22 @@ class FindAnswer:
    
     # ④ NER 태그를 실제 입력된 단어로 변환
     
-    # 예를 들어 '자장명 주문할께요' 라는 텍스트가 챗본 엔진에 입력되었다고 합시다.
-    # 그러면 챗봇 엔진은 '자장명'을 'B_FOOD 객체명'으로 인식합니다.
-    # 이때 검색된 답변이 '{B_FOOD} 주문 처리 완료 되었습니다 주문해주셔서 감사합니다' 라고 한다면,
-    # 답변 내용속 '{B_FOOD}' 를 '자장면' 으로 변환해 주는 함수입니다.
-    # 변환해야 하는 태그가 더 존재한다면 치환 규칙을 추가하면 됩니다.
-    
+
     def tag_to_word(self, ner_predicts, answer):
         for word, tag in ner_predicts:
             print('단어는 뭘까?', word, '태그는 뭘까?', tag)
             
             # 변환해야하는 태그가 있는 경우 추가
-            if tag == 'B_FOOD' or tag == 'B_ARTIST' or tag == 'B_TI' or tag == 'B_OG' or tag == 'B_PS':
+            if tag == 'B_ARTIST':
                 answer = answer.replace(tag, word)
                 
         answer = answer.replace('{', '')
         answer = answer.replace('}', '')
         return answer
+
+    def music_to_search(self, ner_predicts):
+        for word, tag in ner_predicts:
+            if tag == 'B_ARTIST':
+                m_search = music_search(word)
+
+            return m_search

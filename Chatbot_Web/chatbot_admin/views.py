@@ -24,9 +24,7 @@ def cb_learn(request):
     ep = int(request.POST['ep'])
     
     model, x_train, x_test, y_train, y_test = model_fit()
-    if('./static/model.h5'):
-        model = load_model('./static/model.h5')
-
+    
     model.fit(x_train, y_train, batch_size=128, shuffle=True, epochs=ep)
     
     context = {
@@ -38,7 +36,7 @@ def cb_learn(request):
 
 def cb_test(request):
     model, x_train, x_test, y_train, y_test = model_fit()
-    model = load_model('./static/model.h5')
+    
     acc = model.evaluate(x_test, y_test)
     acc = round(acc[1] * 100, 2)
     context = {

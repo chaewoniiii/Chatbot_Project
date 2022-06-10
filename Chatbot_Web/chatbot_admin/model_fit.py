@@ -1,33 +1,24 @@
 import tensorflow as tf
 from sklearn.model_selection import train_test_split
 import numpy as np
-from utils.Preprocess import Preprocess
-import os
+# from ChatServer.utils.Preprocess import Preprocess
+
 from tensorflow.keras import preprocessing
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Embedding, Dense, TimeDistributed, Dropout, Bidirectional
 from tensorflow.keras.optimizers import Adam
+from .read_file import read_file
 
+import os, sys
+sys.path.append('../ChatServer')
+from utils.Preprocess import Preprocess
 
 def model_fit():
-    def read_file(file_name):
-        sents = []
-        with open(file_name, 'r', encoding='utf-8') as f:
-            lines = f.readlines()
-            for idx, l in enumerate(lines):
-                if l[0] == ';' and lines[idx + 1][0] == '$':
-                    this_sent = []
-                elif l[0] == '$' and lines[idx - 1][0] == ';':
-                    continue
-                elif l[0] == '\n':
-                    sents.append(this_sent)
-                else:
-                    this_sent.append(tuple(l.split()))
-        return sents
 
-    corpus = read_file(os.path.join('./models/ner', 'ner_train.txt'))
-    p = Preprocess(word2index_dic=os.path.join('./train_tools/dict', 'chatbot_dict.bin'),
-                userdic=os.path.join('./utils', 'user_dic.tsv'))
+    corpus = read_file(os.path.join('../ChatServer/models/ner', 'new_new_dict.txt'))
+    p = Preprocess(word2index_dic=os.path.join('../ChatServer/train_tools/dict', 'chatbot_dict.bin'),
+                userdic=os.path.join('../ChatServer/utils', 'user_dic_test.txt'))
+ 
 
     sentences, tags = [], []
     for t in corpus:
@@ -52,23 +43,24 @@ def model_fit():
 
     index_to_ner = tag_tokenizer.index_word
     index_to_ner[0] = 'PAD'
-
+    flag = 0
     max_len = 40 
+    
     x_train = preprocessing.sequence.pad_sequences(x_train, padding='post', maxlen=max_len)
     y_train = preprocessing.sequence.pad_sequences(y_train, padding='post', maxlen=max_len)
+    
 
     x_train, x_test, y_train, y_test = train_test_split(x_train, y_train,
                                                         test_size=.2)
     flag = 0
     if flag == 0:
         y_train = tf.keras.utils.to_categorical(y_train, num_classes=tag_size)  
-        y_test = tf.keras.utils.to_categorical(y_test, num_classes=tag_size)   
+        y_test = tf.keras.utils.to_categorical(y_test, num_classes=tag_size)
         flag +=1
-
+    
     model = Sequential()
     model.add(Embedding(input_dim=vocab_size, output_dim=30, input_length=max_len, mask_zero=True))
-    # model.add(Bidirectional(LSTM(200, return_sequences=True, dropout=0.50, recurrent_dropout=0.25)))
-    model.add(Bidirectional(LSTM(200, return_sequences=True, dropout=0.50, recurrent_dropout=0, activation='relu')))
+    model.add(Bidirectional(LSTM(200, return_sequences=True, dropout=0.50, recurrent_dropout=0.25)))
     model.add(TimeDistributed(Dense(tag_size, activation='softmax')))
     model.compile(loss='categorical_crossentropy', optimizer=Adam(0.01), metrics=['accuracy'])
 
