@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .db_func import *
 from .insert_data import *
+from .check_post import *
 # from django.http import JsonResponse
 from django.http import HttpResponse
 import json
@@ -36,10 +37,12 @@ def db_main(request):
     return render(request, 'temp_page.html')
 
 # 관리자페이지-메인 학습요청
+@csrf_exempt
 def db_train(request):
     return render(request, 'temp_page.html')
 
 # 관리자페이지-메인 테스트요청
+@csrf_exempt
 def db_test(request):
     return render(request, 'temp_page.html')
 
@@ -52,6 +55,7 @@ def db_data(request):
     return render(request, 'temp_page.html')
 
 # 관리자페이지-데이터 db수정
+@csrf_exempt
 def db_mod_data(request):
     if request.method == 'POST':
         data = json.dumps(db_search(request))
@@ -60,6 +64,7 @@ def db_mod_data(request):
     return render(request, 'temp_page.html')
 
 # 관리자페이지-응답 db요청
+@csrf_exempt
 def db_chat(request):
     if request.method == 'POST':
         data = json.dumps(db_search(request))
@@ -67,6 +72,7 @@ def db_chat(request):
     return render(request, 'temp_page.html')
 
 # 관리자페이지-응답 db수정
+@csrf_exempt
 def db_mod_chat(request):
     if request.method == 'POST':
         data = json.dumps(db_search(request))

@@ -42,6 +42,15 @@ class FindAnswer:
         # 동일한 답변이 2개 이상인 경우 랜덤 선택
         sql = sql + 'order by rand() limit 1'
         return sql
+
+    # user_chat저장
+    def save_query(self, query, ai_intent, ai_ner):
+        sql = f'INSERT INTO user_chat_data \
+            (query, ai_intent, ai_ner)\
+            VALUE({query}, {ai_intent}, {ai_ner})'
+
+        result = self.db.select_one(sql)
+        return result
    
     # ④ NER 태그를 실제 입력된 단어로 변환
     

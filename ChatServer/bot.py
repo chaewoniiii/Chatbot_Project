@@ -56,6 +56,7 @@ def to_client(conn, addr, params):
         # 개체명 파악
         ner_predicts = ner.predict(query)
         ner_tags = ner.predict_tags(query)
+
        
         # 답변 검색, 분석된 의도와 개체명을 이용해 학습 DB 에서 답변을 검색
         try:
@@ -70,6 +71,11 @@ def to_client(conn, addr, params):
                 print('뮤직검색:', m_search)
                 # m_act_res = f.music_to_act(ner_predicts)
                 # print(m_act_res, m_act_res[0], m_act_res[1])
+            
+            # query 저장
+            result = f.save_query(query, intent_name, ner_tags) # 뭐나오는지 확인
+            print('1' if result else '0')   
+
         except:
             answer = "대답 할 수 없습니다."
             answer_image = None
