@@ -1,4 +1,4 @@
-from music_search import music_search
+from music_search import *
 
 class FindAnswer:
     
@@ -52,18 +52,21 @@ class FindAnswer:
             
             # 변환해야하는 태그가 있는 경우 추가
             if tag == 'B_ARTIST' or tag == 'B_ACT':
-               
                 answer = answer.replace(tag, word)
                 print('결과:', answer)
-                
+
         answer = answer.replace('{', '')
         answer = answer.replace('}', '')
         return answer
-
-    def music_to_search(self, ner_predicts):
-        for word, tag in ner_predicts:
+    
+    def music_to_search(self, ner_pred):
+        res = []
+        for word, tag in ner_pred:
             if tag == 'B_ARTIST':
-                m_search = music_search(word)
+                search = music_search(word)
+                return search
             elif tag == 'B_ACT':
-                m_search = '이제 태그 작업 해야하는데 지니에서 검색 쿼리가 다 다르네?'
-            return m_search
+                # res.append(music_act_search(word).제목, music_act_search(word).링크)
+                res = music_act_result(word)
+                
+                return res

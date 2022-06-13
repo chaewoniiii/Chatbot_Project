@@ -8,13 +8,13 @@ from utils.Preprocess import Preprocess
 from models.intent.IntentModel import IntentModel
 from models.ner.NerModel import NerModel
 from utils.FindAnswer import FindAnswer
-from music_search import music_search
+from music_search import *
 
 
 
 # 전처리 객체 생성
 p = Preprocess(word2index_dic='train_tools/dict/chatbot_dict.bin',
-               userdic='utils/user_dic_test.txt')
+               userdic='utils/user_dic_test.tsv')
 
 # 의도 파악 모델
 intent = IntentModel(model_name='models/intent/intent_model_test.h5', preprocess=p)
@@ -62,10 +62,16 @@ def to_client(conn, addr, params):
             f = FindAnswer(db)
             answer_text, answer_image = f.search(intent_name, ner_tags)
             answer = f.tag_to_word(ner_predicts, answer_text)
+            print('대답:',answer)
             if not intent_name == '인사':
                 m_search = f.music_to_search(ner_predicts)
+                if intent_name =='행동':
+                    m_search = m_search.곡
+                print('뮤직검색:', m_search)
+                # m_act_res = f.music_to_act(ner_predicts)
+                # print(m_act_res, m_act_res[0], m_act_res[1])
         except:
-            answer = "죄송해요 무슨 말인지 모르겠어요. 조금 더 공부 할게요."
+            answer = "대답 할 수 없습니다."
             answer_image = None
 
         # 검색된 답변데이터와 함께 앞서 정의한 응답하는 JSON 으로 생성
