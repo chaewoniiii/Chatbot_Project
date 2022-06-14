@@ -44,12 +44,13 @@ class FindAnswer:
         return sql
 
     # user_chat저장
-    def save_query(self, query, ai_intent, ai_ner):
+    def save_query(self, query, ai_intent, ai_ner, check_answer):
         sql = f'INSERT INTO user_chat_data \
-            (query, ai_intent, ai_ner)\
-            VALUE({query}, {ai_intent}, {ai_ner})'
-
+            (query, ai_intent, ai_ner, check_answer)\
+            VALUES("{query}", "{ai_intent}", "{ai_ner}", "{check_answer}")'    
+        
         result = self.db.select_one(sql)
+        
         return result
    
     # ④ NER 태그를 실제 입력된 단어로 변환
@@ -57,12 +58,12 @@ class FindAnswer:
 
     def tag_to_word(self, ner_predicts, answer):
         for word, tag in ner_predicts:
-            print('단어는 뭘까?', word, '태그는 뭘까?', tag)
+            # print('단어는 뭘까?', word, '태그는 뭘까?', tag)
             
             # 변환해야하는 태그가 있는 경우 추가
             if tag == 'B_ARTIST' or tag == 'B_ACT':
                 answer = answer.replace(tag, word)
-                print('결과:', answer)
+                # print('결과:', answer)
 
         answer = answer.replace('{', '')
         answer = answer.replace('}', '')
@@ -79,3 +80,8 @@ class FindAnswer:
                 res = music_act_result(word)
                 
                 return res
+
+    def check_bad_answer(self):
+        sql = "SELECT count(CASE WHEN ai_ner != 'None' AND (ai_intent = '인사' OR ai_intent = '욕설') OR check_answer = 'Bad' THEN 1 end) AS result FROM user_chat_data"
+        result = self.db.select_one(sql)
+        return result['result']

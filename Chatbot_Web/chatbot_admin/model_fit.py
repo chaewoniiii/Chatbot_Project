@@ -18,7 +18,6 @@ def model_fit():
     corpus = read_file(os.path.join('../ChatServer/models/ner', 'new_new_dict.txt'))
     p = Preprocess(word2index_dic=os.path.join('../ChatServer/train_tools/dict', 'chatbot_dict.bin'),
                 userdic=os.path.join('../ChatServer/utils', 'user_dic_test.txt'))
- 
 
     sentences, tags = [], []
     for t in corpus:

@@ -1,5 +1,6 @@
 import threading
 import json
+from utils.MakeTable import MakeTable
 
 from config.DatabaseConfig import *
 from utils.Database import Database
@@ -9,7 +10,8 @@ from models.intent.IntentModel import IntentModel
 from models.ner.NerModel import NerModel
 from utils.FindAnswer import FindAnswer
 from music_search import *
-
+import os, sys
+sys.path.append('../Chatbot_web')
 
 
 # 전처리 객체 생성
@@ -17,10 +19,12 @@ p = Preprocess(word2index_dic='train_tools/dict/chatbot_dict.bin',
                userdic='utils/user_dic_test.tsv')
 
 # 의도 파악 모델
-intent = IntentModel(model_name='models/intent/intent_model_test.h5', preprocess=p)
+# intent = IntentModel(model_name='models/intent/intent_model_test.h5', preprocess=p)
+intent = IntentModel(model_name='../Chatbot_web/static/data/intent_model_test.h5', preprocess=p)
 
 # 개체명 인식 모델
-ner = NerModel(model_name='models/ner/ner_model_test.h5', preprocess=p)
+# ner = NerModel(model_name='models/ner/ner_model_test.h5', preprocess=p)
+ner = NerModel(model_name='../Chatbot_web/static/data/ner_model_test.h5', preprocess=p)
 
 
 # 클라이언트 요청을 수행하는 함수 (쓰레드에 담겨 실행될거임)
@@ -56,30 +60,39 @@ def to_client(conn, addr, params):
         # 개체명 파악
         ner_predicts = ner.predict(query)
         ner_tags = ner.predict_tags(query)
-
+        
        
         # 답변 검색, 분석된 의도와 개체명을 이용해 학습 DB 에서 답변을 검색
+        c = MakeTable(db) 
+        if c.check_table('user_chat_data') == 0:
+            c.make_table_chat()
+            print('테이블 생성 완료')
+        
         try:
+            
             f = FindAnswer(db)
             answer_text, answer_image = f.search(intent_name, ner_tags)
+            
             answer = f.tag_to_word(ner_predicts, answer_text)
             print('대답:',answer)
             if not intent_name == '인사':
                 m_search = f.music_to_search(ner_predicts)
                 if intent_name =='행동':
                     m_search = m_search.곡
-                print('뮤직검색:', m_search)
-                # m_act_res = f.music_to_act(ner_predicts)
-                # print(m_act_res, m_act_res[0], m_act_res[1])
+                # print('뮤직검색:', m_search)
             
             # query 저장
-            result = f.save_query(query, intent_name, ner_tags) # 뭐나오는지 확인
-            print('1' if result else '0')   
+    
+            f.save_query(query, intent_name, ner_tags, check_answer='Good')
+            # result = f.save_query(query, intent_name, ner_tags, check_answer='Good') # 뭐나오는지 확인
+            # print('1' if result else '0')   
 
         except:
             answer = "대답 할 수 없습니다."
+            f.save_query(query, intent_name, ner_tags, check_answer='Bad')
             answer_image = None
-
+        bad_count = f.check_bad_answer()
+        # print(bad_count)
         # 검색된 답변데이터와 함께 앞서 정의한 응답하는 JSON 으로 생성
         send_json_data_str = {
             "m_search" : m_search,
@@ -87,7 +100,8 @@ def to_client(conn, addr, params):
             "Answer": answer,
             "AnswerImageUrl": answer_image,
             "Intent": intent_name,
-            "NER": str(ner_predicts)
+            "NER": str(ner_predicts),
+            'bad_count' : bad_count,
         }
 
         # json 텍스트로 변환. 하여 전송

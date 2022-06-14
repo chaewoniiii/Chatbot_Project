@@ -4,15 +4,32 @@ from django.shortcuts import render
 from matplotlib.font_manager import json_load
 from django.views.decorators.csrf import csrf_exempt
 import matplotlib.pyplot as plt
+from soupsieve import select
 from chatbot_admin.model_fit import model_fit
 from tensorflow.keras.models import load_model
+from .data_check import *
+import pandas as pd
+import json
 
 # Create your views here.
 def cb_main(request):
+    result = pd.read_csv('./static/data/total_train_data_1.csv', encoding='cp949')
+    bad_count = bad_data_len()
+    context = {
+        'total_data' : len(result),
+        'unknown_data' : bad_count,
+    }
     
-    return render(request, 'cb_main.html')
+    return render(request, 'cb_main.html', context)
 
 def cb_data(request):
+    if request.method == 'POST':
+        s = request.POST.get('r_check')
+        res = select_data(s)
+        context = {
+            'res' : res
+        }
+        return render(request, 'cb_data.html', context)    
     return render(request, 'cb_data.html')
 
 def cb_req(request):
@@ -31,12 +48,12 @@ def cb_learn(request):
         'loading' : 'fin',
         'learn_data' : ep,
     }
-    model.save('./static/model.h5')
+    model.save('./static/data/intent_model_test.h5')
     return JsonResponse(context)
 
 def cb_test(request):
     model, x_train, x_test, y_train, y_test = model_fit()
-    
+    model = load_model('./static/data/intent_model_test.h5')
     acc = model.evaluate(x_test, y_test)
     acc = round(acc[1] * 100, 2)
     context = {

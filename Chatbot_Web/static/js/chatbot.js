@@ -1,5 +1,5 @@
 $(function(){
-    testchat = '안녕하세요 챗봇입니다 <br>사용법:ex)싸이 노래 추천 v1.5 ...'
+    testchat = '안녕하세요 챗봇입니다 <br>사용법:ex)싸이 노래 추천 v1.6 ...'
     var bottext = "<div style='margin:15px 0;text-align:left;'><span style='padding:3px 10px;background-color:#CEFBC9;border-radius:3px;'>" + testchat + "</span></div>";
     $('#chatbox').append(bottext);
     // SEND 버튼을 누르거나 
@@ -62,7 +62,7 @@ function send_message(){
             }
             
             $chatbox.append(bottext);
-            
+           
             // 스크롤 조정하기
             $chatbox.animate({scrollTop: $chatbox.prop('scrollHeight')})
         }

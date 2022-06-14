@@ -1,5 +1,3 @@
-
-
 class MakeTable:
     
     # Database 인스턴스 객체로 생성
@@ -8,27 +6,24 @@ class MakeTable:
 
     # 테이블 확인
     def check_table(self, table):
-        sql = f'SELECT 1 FROM Information_schema.tables \
-            WHERE table_schema = mydb118 \
-            AND table_name = {table}'
-
+        sql = f'SELECT count(*) as result FROM Information_schema.tables \
+            WHERE table_schema = "mydb118" \
+            AND table_name = "{table}"'
+        
         result = self.db.select_one(sql)
-        return result   # 있으면1, 없으면 0
+        # print('테이블결과:',result['result'])
+        return result['result']   # 있으면1, 없으면 0
 
     # 테이블 생성
     def make_table_chat(self):
         if self.check_table('user_chat_data') == 0: return 0
-
+        
         sql = f'CREATE TABLE user_chat_data (\
-            id INT NOT NULL AUTO_INCREMENT,\
             id INT NOT NULL AUTO_INCREMENT, \
             query TEXT, \
             ai_intent VARCHAR(32), \
             ai_ner VARCHAR(32), \
-            ad_intent VARCHAR(32), \
-            ad_ner VARCHAR(32), \
-            trian_num INT DEFAULT 0, \
-            on_train INT DEFAULT 0, \
+            check_answer VARCHAR(32), \
             reg_date DATETIME DEFAULT CURRENT_TIMESTAMP, \
             PRIMARY KEY(id)\
             ) ENGINE=MYISAM CHARSET=utf8;'
@@ -49,7 +44,9 @@ class MakeTable:
    
     def init_table_answer(self, file):
         pass
+    
 
+    
     
 
 

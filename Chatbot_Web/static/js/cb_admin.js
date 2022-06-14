@@ -1,9 +1,18 @@
+$(document).ready(function () {
+    $('#dtDynamicVerticalScrollExample').DataTable({
+      "scrollY": "50vh",
+      "scrollCollapse": true,
+    });
+    $('.dataTables_length').addClass('bs-select');
+  });
+
+
 function learning(){
     var data_num = $('#sel_data').val()
     if($('#n_data').css('display', 'none')){
         $('#n_data').css('display', 'block')
         $('.btn_res').css('display', 'block')
-        $('#n_data').text(data_num + "개의 데이터를 학습시키겠습니까?")
+        $('#n_data').text(data_num + "만큼 돌리겠습니까?")
     }
 }
 

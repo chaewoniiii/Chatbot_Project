@@ -9,65 +9,45 @@
 {%block content%}
 <!-- Content -->
 <div class="row mt-5">
-        <div class="col-3">
-            <select name="admin_intent" id="admin_intent">
-                <option value="ad1">관리자의도전체</option>
-                <option value="ad2">의도분류1</option>
-                <option value="ad3">의도분류2</option>
-            </select>
-        
-            <select name="ai_intent" id="ai_intent">
-                <option value="ai1">ai 의도전체</option>
-                <option value="ai2">의도분류1</option>
-                <option value="ai3">의도분류2</option>
-            </select>
-        </div>
-        <div class="col-3">
-            <input type="checkbox" name="" id=""> 관리자 수정항목 표시 <br>
-            <input type="checkbox" name="" id=""> 관리자 미수정항목 표시 <br>
-            <input type="checkbox" name="" id=""> 테스트 결과 정답항목 표시 <br>
-            <input type="checkbox" name="" id=""> 테스트 결과 틀린항목 표시 <br>
-            <input type="checkbox" name="" id=""> 미테스트 결과 표시 <br>
-            <input type="checkbox" name="" id=""> 학습적용된 항목 표시 <br>
-        </div> 
-        <div class="col-3 position-relative">
-        학습횟수(이하) <input type="number" name="" id="" style="width:30%" min="0"> <br>
-        <button type="button" class="btn btn-primary position-absolute top-100 start-50 translate-middle" style="width: 100%;">적용</button>
-        </div>
+        <form action="." method="post">
+            {% csrf_token %}
+            <div class="col-3">
+                <ul>
+                    <li><input type="radio" name="r_check" id="d_unknown" value="all"> 전체 확인</li>
+                    <li><input type="radio" name="r_check" id="d_hello" value="인사"> 의도 분류 : 인사</li>
+                    <li><input type="radio" name="r_check" id="d_song" value="노래"> 의도 분류 : 노래</li>
+                    <li><input type="radio" name="r_check" id="d_act" value="행동"> 의도 분류 : 행동</li>
+                    <li><input type="radio" name="r_check" id="d_unknown" value="Bad"> 미확인데이터</li>
+                </ul>
+                
+            </div> 
+            <div class="col-3 position-relative">
+                <button type="submit" class="btn btn-primary position-absolute top-100 start-50 translate-middle" style="width: 100%;">적용</button>
+            </div>
+        </form>
 </div>
     <div class="mt-5 position-relative">
-        <table class="table">
+        <table id="dtDynamicVerticalScrollExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
             <thead>
-                <th>no</th>
-                <th>텍스트</th>
-                <th>학습횟수</th>
-                <th>ai분류</th>
-                <th>관리자분류</th>
-                <th>테스트결과</th>
-                <th>학습적용</th>
+                <th class="th-sm">no</th>
+                <th class="th-sm">텍스트</th>
+                <th class="th-sm">AI 의도</th>
+                <th class="th-sm">AI 태그</th>
+                <th class="th-sm">결과</th>
             </thead>
             <tbody>
+                {% for i in res %}
                 <tr>
-                    <td>1</td>
-                    <td><p id="test"></p></td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
-                    <td><button type="button" class="btn btn-primary" onclick="req_data()">적용됨</button></td>
+                    <td>{{i.id}}</td>
+                    <td>{{i.query}}</td>
+                    <td>{{i.ai_intent}}</td>
+                    <td>{{i.ai_ner}}</td>
+                    <td>{{i.check_answer}}</td>
                 </tr>
-                <tr>
-                    <td>1-1</td>
-                    <td>2-1</td>
-                    <td>3-1</td>
-                    <td>4-1</td>
-                    <td>5-1</td>
-                    <td>6-1</td>
-                    <td><button type="button" class="btn btn-warning">제외됨</button></td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
         <br>
-        <button type="button" class="btn btn-primary position-absolute bottom-0 end-0" style="width: 10%;">수정하기</button>    
+        <!-- <button type="button" class="btn btn-primary position-absolute bottom-0 end-0" style="width: 10%;">수정하기</button>     -->
     </div>
 {%endblock%}
