@@ -20460,3 +20460,19 @@ $<퇴근:ACT> 중에 듣는 노래 추천 해줘
 9	 아	 EC	 O
 10	 주	 VX	 O
 11	 어	 EC	 O
+
+; 일
+$<일:ACT>
+1	일	NNG	B_ACT
+
+; 작업
+$<작업:ACT>
+1	작업	NNG	B_ACT
+
+; 출근
+$<출근:ACT>
+1	출근	NNG	B_ACT
+
+; 퇴근
+$<퇴근:ACT>
+1	퇴근	NNG	B_ACT

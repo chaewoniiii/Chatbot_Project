@@ -56,11 +56,13 @@ def to_client(conn, addr, params):
         # 의도 파악
         intent_predict = intent.predict_class(query)
         intent_name = intent.labels[intent_predict]
-        
+        # print('질문 :', query)
+        # print('의도 :', intent_name)
         # 개체명 파악
         ner_predicts = ner.predict(query)
         ner_tags = ner.predict_tags(query)
-        
+        # print('개체명 :', ner_predicts)
+        # print('파악한 개체명:', ner_tags)
        
         # 답변 검색, 분석된 의도와 개체명을 이용해 학습 DB 에서 답변을 검색
         c = MakeTable(db) 
@@ -74,7 +76,7 @@ def to_client(conn, addr, params):
             answer_text, answer_image = f.search(intent_name, ner_tags)
             
             answer = f.tag_to_word(ner_predicts, answer_text)
-            print('대답:',answer)
+            
             if not intent_name == '인사':
                 m_search = f.music_to_search(ner_predicts)
                 if intent_name =='행동':
@@ -86,7 +88,8 @@ def to_client(conn, addr, params):
             f.save_query(query, intent_name, ner_tags, check_answer='Good')
             # result = f.save_query(query, intent_name, ner_tags, check_answer='Good') # 뭐나오는지 확인
             # print('1' if result else '0')   
-
+            print('대답 :', answer)
+            print('검색결과: ',m_search)
         except:
             answer = "대답 할 수 없습니다."
             f.save_query(query, intent_name, ner_tags, check_answer='Bad')

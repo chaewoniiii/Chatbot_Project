@@ -5,8 +5,7 @@ from matplotlib.font_manager import json_load
 from django.views.decorators.csrf import csrf_exempt
 import matplotlib.pyplot as plt
 from soupsieve import select
-from chatbot_admin.model_fit import model_fit
-from tensorflow.keras.models import load_model
+from .model_fit import *
 from .data_check import *
 import pandas as pd
 import json
@@ -39,22 +38,20 @@ def cb_req(request):
 @csrf_exempt
 def cb_learn(request):
     ep = int(request.POST['ep'])
+    intent_fit()
     
-    model, x_train, x_test, y_train, y_test = model_fit()
-    
-    model.fit(x_train, y_train, batch_size=128, shuffle=True, epochs=ep)
+    model_fit(ep)
     
     context = {
         'loading' : 'fin',
         'learn_data' : ep,
     }
-    model.save('./static/data/intent_model_test.h5')
+    
     return JsonResponse(context)
 
 def cb_test(request):
-    model, x_train, x_test, y_train, y_test = model_fit()
-    model = load_model('./static/data/intent_model_test.h5')
-    acc = model.evaluate(x_test, y_test)
+    
+    acc = model_eve()
     acc = round(acc[1] * 100, 2)
     context = {
         'loading' : 'fin',
